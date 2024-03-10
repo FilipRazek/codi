@@ -35,7 +35,9 @@ def matches_conditions(solution, conditions):
     )
 
 
-def play_game(candidates, first_letter, length):
+def play_game(candidates):
+    first_letter = input("Enter first letter: ")
+    length = int(input("Enter length: "))
     conditions = []
     candidates = [
         word for word in candidates if word[0] == first_letter and len(word) == length
@@ -44,10 +46,13 @@ def play_game(candidates, first_letter, length):
         print(f"Remaining candidates: {len(candidates)}")
         candidate = random.choice(candidates)
         print(f"Current candidate: {candidate}")
-        accepted = input("If the candidate was rejected, enter 'n': ")
-        if accepted == "n":
+        answer = input("Rejected (n), accepted (y) or continue (any)? ")
+        if answer == "n":
             candidates.remove(candidate)
             continue
+        elif answer == "y":
+            print("Congratulations! The word is", candidate)
+            break
         new_condition = input(
             "Enter condition, separated by commas (e.g. 1,2,0): ")
         conditions.append((candidate, [int(x)
@@ -63,7 +68,5 @@ with open("words.txt") as f:
     candidates = f.read().splitlines()
     candidates = [candidate.lower() for candidate in candidates]
 
-first_letter = input("Enter first letter: ")
-length = int(input("Enter length: "))
-
-play_game(candidates, first_letter, length)
+while True:
+    play_game(candidates)

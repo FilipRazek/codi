@@ -59,7 +59,7 @@ def play_game(candidates, first_letter, length):
         ]
 
 
-with open("mots.txt") as f:
+with open("words.txt") as f:
     candidates = f.read().splitlines()
     candidates = [candidate.lower() for candidate in candidates]
 

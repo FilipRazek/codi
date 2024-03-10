@@ -36,15 +36,10 @@ def matches_conditions(solution, conditions):
 
 
 def play_game(candidates, first_letter, length):
-    conditions = [("antisepsie", [1, 1, 1, 1, 2, 2, 0, 0, 2, 0])]
+    conditions = []
     candidates = [
         word for word in candidates if word[0] == first_letter and len(word) == length
     ]
-    #candidates = [
-    #    solution
-    #    for solution in candidates
-    #    if matches_conditions(solution, conditions)
-    #]
     while len(candidates) > 0:
         print(f"Remaining candidates: {len(candidates)}")
         candidate = random.choice(candidates)
@@ -67,7 +62,6 @@ def play_game(candidates, first_letter, length):
 with open("mots.txt") as f:
     candidates = f.read().splitlines()
     candidates = [candidate.lower() for candidate in candidates]
-    print("ANTINOMIES".lower() in candidates)
 
 first_letter = input("Enter first letter: ")
 length = int(input("Enter length: "))

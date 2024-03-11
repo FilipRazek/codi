@@ -39,6 +39,13 @@ function mapRowToCondition(row) {
       word: row.map((cell) => cell.content).join(""),
       condition: row.map((cell) => cell.position),
     };
+  } else if (
+    row[0].content !== "" &&
+    row.slice(1).every((cell) => cell.content === ".")
+  ) {
+    return {
+      letter: row[0].content,
+    };
   }
 }
 
@@ -86,8 +93,10 @@ function matchesCondition(word, solution, condition) {
 }
 
 function matchesConditions(solution, conditions) {
-  return conditions.every(({ word, condition }) =>
-    matchesCondition(word, solution, condition)
+  return conditions.every((condition) =>
+    condition.letter
+      ? solution[0] === condition.letter
+      : matchesCondition(solution, condition.word, condition.condition)
   );
 }
 

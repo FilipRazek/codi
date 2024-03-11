@@ -79,7 +79,7 @@ function getColoring(word, solution) {
 }
 
 function matchesCondition(word, solution, condition) {
-  if (condition.length !== word.length) {
+  if (condition.length !== solution.length) {
     return false;
   }
   return condition.join("") === getColoring(word, solution).join("");

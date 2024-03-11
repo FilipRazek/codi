@@ -121,7 +121,7 @@ function typeCandidate() {
       !invalidWords.includes(word) &&
       matchesConditions(word, conditions)
   );
-  if (conditions + 1 >= attempts && candidates.length > 1) {
+  if (conditions.length + 1 >= attempts && candidates.length > 1) {
     alert("Only one attempt left!");
     console.log(candidates);
   } else {

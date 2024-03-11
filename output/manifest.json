@@ -7,11 +7,7 @@
     {
       "matches": ["*://*.tusmo.xyz/*"],
       "js": ["main.js"],
-      "all_frames": true,
-      "world": "MAIN"
+      "all_frames": true
     }
-  ],
-  "background": {
-    "scripts": ["bg.js"]
-  }
+  ]
 }

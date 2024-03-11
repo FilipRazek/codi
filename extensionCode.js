@@ -105,6 +105,9 @@ function matchesConditions(solution, conditions) {
 
 function typeWord(word) {
   const letters = [...document.querySelectorAll(".key span")];
+  if (letters.length !== 26) {
+    alert("invalid page, could not type word " + word);
+  }
   const lettersMap = {};
   for (const letter of letters) {
     lettersMap[letter.textContent] = letter;

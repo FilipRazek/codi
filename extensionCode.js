@@ -135,6 +135,8 @@ function typeCandidate() {
     console.log(candidates);
     const word = prompt("Your guess:");
     typeWord(word);
+  } else if (candidates.length === 0) {
+    console.warn("No candidates found");
   } else {
     const randomIndex = Math.floor(Math.random() * candidates.length);
     typeWord(candidates[randomIndex]);

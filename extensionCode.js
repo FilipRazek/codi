@@ -96,7 +96,7 @@ function matchesConditions(solution, conditions) {
   return conditions.every((condition) =>
     condition.letter
       ? solution[0] === condition.letter
-      : matchesCondition(solution, condition.word, condition.condition)
+      : matchesCondition(condition.word, solution, condition.condition)
   );
 }
 

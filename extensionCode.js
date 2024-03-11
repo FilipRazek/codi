@@ -130,9 +130,11 @@ function typeCandidate() {
       !invalidWords.includes(word) &&
       matchesConditions(word, conditions)
   );
-  if (conditions.length + 1 >= attempts && candidates.length > 1) {
+  if (conditions.length >= attempts && candidates.length > 1) {
     alert("Only one attempt left!");
     console.log(candidates);
+    const word = prompt("Your guess:");
+    typeWord(word);
   } else {
     const randomIndex = Math.floor(Math.random() * candidates.length);
     typeWord(candidates[randomIndex]);

@@ -49,7 +49,7 @@ function mapRowToCondition(row) {
   }
 }
 
-function readConditions() {
+function readBoard() {
   const grid = document.querySelector(".game-center .motus-grid");
   const cells = grid.querySelectorAll(".cell-content");
   const columns = extractColumnCount(grid);
@@ -100,16 +100,6 @@ function matchesConditions(solution, conditions) {
   );
 }
 
-function getCandidates() {
-  const { conditions, columns } = readConditions();
-  return KNOWN_WORDS.filter(
-    (word) =>
-      word.length === columns &&
-      !invalidWords.includes(word) &&
-      matchesConditions(word, conditions)
-  );
-}
-
 function typeWord(word) {
   const letters = [...document.querySelectorAll(".key span")];
   const lettersMap = {};
@@ -124,10 +114,21 @@ function typeWord(word) {
 }
 
 function typeCandidate() {
-  const candidates = getCandidates();
-  const randomIndex = Math.floor(Math.random() * candidates.length);
-  typeWord(candidates[randomIndex]);
-  invalidateWord(candidates[randomIndex]);
+  const { conditions, columns, attempts } = readBoard();
+  const candidates = KNOWN_WORDS.filter(
+    (word) =>
+      word.length === columns &&
+      !invalidWords.includes(word) &&
+      matchesConditions(word, conditions)
+  );
+  if (conditions + 1 >= attempts && candidates.length > 1) {
+    alert("Only one attempt left!");
+    console.log(candidates);
+  } else {
+    const randomIndex = Math.floor(Math.random() * candidates.length);
+    typeWord(candidates[randomIndex]);
+    invalidateWord(candidates[randomIndex]);
+  }
 }
 
 function invalidateWord(word) {
@@ -139,4 +140,4 @@ const invalidWords = [];
 exportFunction(typeCandidate, window, { defineAs: "typeCandidate" });
 exportFunction(invalidateWord, window, { defineAs: "invalidateWord" });
 
-setInterval(typeCandidate, 4000);
+setInterval(typeCandidate, 1400);

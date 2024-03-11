@@ -110,10 +110,21 @@ function getCandidates() {
   );
 }
 
-function printCandidate() {
+function typeWord(word) {
+  const letters = [...document.querySelectorAll(".key span")];
+  const lettersMap = {};
+  for (const letter of letters) {
+    lettersMap[letter.textContent] = letter;
+  }
+  for (const letter of word) {
+    lettersMap[letter].click();
+  }
+}
+
+function typeCandidate() {
   const candidates = getCandidates();
   const randomIndex = Math.floor(Math.random() * candidates.length);
-  console.log(candidates[randomIndex]);
+  typeWord(candidates[randomIndex]);
 }
 
 function invalidateWord(word) {
@@ -122,5 +133,5 @@ function invalidateWord(word) {
 
 const invalidWords = [];
 
-exportFunction(printCandidate, window, { defineAs: "printCandidate" });
+exportFunction(typeCandidate, window, { defineAs: "typeCandidate" });
 exportFunction(invalidateWord, window, { defineAs: "invalidateWord" });

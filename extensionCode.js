@@ -127,6 +127,7 @@ function typeCandidate() {
   const candidates = getCandidates();
   const randomIndex = Math.floor(Math.random() * candidates.length);
   typeWord(candidates[randomIndex]);
+  invalidateWord(candidates[randomIndex]);
 }
 
 function invalidateWord(word) {

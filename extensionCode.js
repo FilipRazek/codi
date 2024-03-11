@@ -119,6 +119,8 @@ function typeWord(word) {
   for (const letter of word) {
     lettersMap[letter].click();
   }
+  const enterButton = document.querySelector(".fas.fa-sign-in-alt");
+  enterButton.click();
 }
 
 function typeCandidate() {

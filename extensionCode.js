@@ -118,6 +118,9 @@ function typeWord(word) {
 
 function typeCandidate() {
   const { conditions, columns, attempts } = readBoard();
+  if (conditions.length === 0) {
+    return;
+  }
   const candidates = KNOWN_WORDS.filter(
     (word) =>
       word.length === columns &&

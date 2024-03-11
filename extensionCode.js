@@ -144,6 +144,5 @@ function invalidateWord(word) {
 const invalidWords = [];
 
 exportFunction(typeCandidate, window, { defineAs: "typeCandidate" });
-exportFunction(invalidateWord, window, { defineAs: "invalidateWord" });
 
 setInterval(typeCandidate, 1400);

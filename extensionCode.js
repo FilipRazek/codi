@@ -50,7 +50,7 @@ function mapRowToCondition(row) {
 }
 
 function readConditions() {
-  const grid = document.querySelector(".motus-grid");
+  const grid = document.querySelector(".game-center .motus-grid");
   const cells = grid.querySelectorAll(".cell-content");
   const columns = extractColumnCount(grid);
   const attempts = cells.length / columns;

@@ -89,7 +89,7 @@ function matchesCondition(word, solution, condition) {
   if (condition.length !== solution.length) {
     throw new Error("Condition and solution must have the same length");
   }
-  return condition.join("") === getColoring(word, solution).join("");
+  return condition.join(";") === getColoring(word, solution).join(";");
 }
 
 function matchesConditions(solution, conditions) {

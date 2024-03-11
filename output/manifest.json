@@ -1,0 +1,17 @@
+{
+  "description": "Tusmo autoplay",
+  "manifest_version": 2,
+  "name": "tusmo-autoplay",
+  "version": "1.0",
+  "content_scripts": [
+    {
+      "matches": ["*://*.tusmo.xyz/*"],
+      "js": ["main.js"],
+      "all_frames": true,
+      "world": "MAIN"
+    }
+  ],
+  "background": {
+    "scripts": ["bg.js"]
+  }
+}

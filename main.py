@@ -46,17 +46,15 @@ def play_game(candidates):
         print(f"Remaining candidates: {len(candidates)}")
         candidate = random.choice(candidates)
         print(f"Current candidate: {candidate}")
-        answer = input("Rejected (n), accepted (y) or continue (any)? ")
+        answer = input(
+            "Rejected (n), accepted (y) or enter condition (e.g. 1202): ")
         if answer == "n":
             candidates.remove(candidate)
             continue
         elif answer == "y":
             print("Congratulations! The word is", candidate)
             break
-        new_condition = input(
-            "Enter condition, separated by commas (e.g. 1,2,0): ")
-        conditions.append((candidate, [int(x)
-                          for x in new_condition.split(",")]))
+        conditions.append((candidate, [int(x) for x in list(answer)]))
         candidates = [
             solution
             for solution in candidates

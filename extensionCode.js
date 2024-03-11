@@ -58,7 +58,7 @@ function readConditions() {
   const cellInfos = Array.from(cells).map(extractInfoFromCell);
   const cellTable = buildTableArray(cellInfos, columns);
   const conditions = cellTable.map(mapRowToCondition).filter(Boolean);
-  return conditions;
+  return { conditions, columns, attempts };
 }
 
 function getColoring(word, solution) {
@@ -87,7 +87,7 @@ function getColoring(word, solution) {
 
 function matchesCondition(word, solution, condition) {
   if (condition.length !== solution.length) {
-    return false;
+    throw new Error("Condition and solution must have the same length");
   }
   return condition.join("") === getColoring(word, solution).join("");
 }
@@ -101,11 +101,13 @@ function matchesConditions(solution, conditions) {
 }
 
 function getCandidates() {
-  const conditions = readConditions();
-  const candidates = KNOWN_WORDS.filter(
-    (word) => !invalidWords.includes(word)
-  ).filter((word) => matchesConditions(word, conditions));
-  return candidates;
+  const { conditions, columns } = readConditions();
+  return KNOWN_WORDS.filter(
+    (word) =>
+      word.length === columns &&
+      !invalidWords.includes(word) &&
+      matchesConditions(word, conditions)
+  );
 }
 
 function printCandidate() {

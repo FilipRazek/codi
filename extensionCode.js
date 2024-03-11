@@ -51,7 +51,7 @@ function readConditions() {
   const cellInfos = Array.from(cells).map(extractInfoFromCell);
   const cellTable = buildTableArray(cellInfos, columns);
   const conditions = cellTable.map(mapRowToCondition).filter(Boolean);
-  return conditions
+  return conditions;
 }
 
 function getColoring(word, solution) {
@@ -93,8 +93,23 @@ function matchesConditions(solution, conditions) {
 
 function getCandidates() {
   const conditions = readConditions();
-  const candidates =  KNOWN_WORDS.filter((word) => matchesConditions(word, conditions));
-  console.log(candidates)
+  const candidates = KNOWN_WORDS.filter(
+    (word) => !invalidWords.includes(word)
+  ).filter((word) => matchesConditions(word, conditions));
+  return candidates;
 }
 
-exportFunction(getCandidates, window, { defineAs: "getCandidates" });
+function printCandidate() {
+  const candidates = getCandidates();
+  const randomIndex = Math.floor(Math.random() * candidates.length);
+  console.log(candidates[randomIndex]);
+}
+
+function invalidateWord(word) {
+  invalidWords.push(word);
+}
+
+const invalidWords = [];
+
+exportFunction(printCandidate, window, { defineAs: "printCandidate" });
+exportFunction(invalidateWord, window, { defineAs: "invalidateWord" });
